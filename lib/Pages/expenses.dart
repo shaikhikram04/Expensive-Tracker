@@ -1,4 +1,5 @@
 import 'package:expensive_tracker/models/expense.dart';
+import 'package:expensive_tracker/widgets/expenses_list/expenses_list.dart';
 import 'package:flutter/material.dart';
 
 class Expenses extends StatefulWidget {
@@ -26,9 +27,26 @@ class _ExpensesState extends State<Expenses> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color(0xFF1F0542),
+        title: const Text(
+          'Flutter ExpenseTracker',
+          style: TextStyle(
+            color: Color.fromARGB(255, 227, 196, 255),
+            fontWeight: FontWeight.w600,
+            fontSize: 17,
+          ),
+        ),
+        
+      ),
       body: Column(
-        children: [],
+        children: [
+          const Text('The Chart'),
+          Expanded(
+            child: ExpensesList(expenses: _registeredExpenses),
+          ),
+        ],
       ),
     );
   }
