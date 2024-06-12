@@ -25,6 +25,13 @@ class _ExpensesState extends State<Expenses> {
     ),
   ];
 
+  void _openAddExpenceOverlay() {
+    showModalBottomSheet(
+      context: context,
+      builder: (ctx) => const Text('Model Bottom Sheet'),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +39,7 @@ class _ExpensesState extends State<Expenses> {
         // foregroundColor: const Color(0xFFE3C4FF),
         actions: [
           IconButton(
-              onPressed: () {},
+              onPressed: _openAddExpenceOverlay,
               icon: const Icon(
                 Icons.add,
                 size: 35,
