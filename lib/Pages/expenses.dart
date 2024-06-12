@@ -29,20 +29,26 @@ class _ExpensesState extends State<Expenses> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color(0xFF1F0542),
+        // foregroundColor: const Color(0xFFE3C4FF),
+        actions: [
+          IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.add,
+                size: 35,
+              ))
+        ],
+        // backgroundColor: const Color(0xFF1F0542),
         title: const Text(
           'Flutter ExpenseTracker',
           style: TextStyle(
-            color: Color.fromARGB(255, 227, 196, 255),
             fontWeight: FontWeight.w600,
-            fontSize: 17,
+            fontSize: 20,
           ),
         ),
-        
       ),
       body: Column(
         children: [
-          const Text('The Chart'),
           Expanded(
             child: ExpensesList(expenses: _registeredExpenses),
           ),
