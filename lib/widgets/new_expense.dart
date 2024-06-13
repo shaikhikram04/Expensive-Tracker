@@ -10,7 +10,7 @@ class NewExpense extends StatefulWidget {
 class _NewExpenseState extends State<NewExpense> {
   final _titleController = TextEditingController();
   final _amountController = TextEditingController();
-  final _selectedDate = 'No Date Selected';
+  var _selectedDate = 'No Date Selected';
 
   void _presentDatePicker() {
     final now = DateTime.now();
@@ -20,7 +20,9 @@ class _NewExpenseState extends State<NewExpense> {
       firstDate: firstDate,
       initialDate: now,
       lastDate: now,
-    );
+    ).then((value) {
+      _selectedDate = value.toString();
+    });
   }
 
   @override
