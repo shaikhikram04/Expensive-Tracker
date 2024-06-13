@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class NewExpense extends StatefulWidget {
@@ -9,10 +8,15 @@ class NewExpense extends StatefulWidget {
 }
 
 class _NewExpenseState extends State<NewExpense> {
-  String enteredTitle = '';
+  final _titleController = TextEditingController();
+  final _amountController = TextEditingController();
+  final _selectedDate = 'No Date Selected';
 
-  void _saveTitleInput(String inputValue) {
-    enteredTitle = inputValue;
+  @override
+  void dispose() {
+    _titleController.dispose();
+    _amountController.dispose();
+    super.dispose();
   }
 
   @override
@@ -23,15 +27,52 @@ class _NewExpenseState extends State<NewExpense> {
         children: [
           TextField(
             maxLength: 50,
-            onChanged: _saveTitleInput,
+            controller: _titleController,
             decoration: const InputDecoration(
               label: Text('Title'),
             ),
           ),
           Row(
             children: [
+              Expanded(
+                child: TextField(
+                  controller: _amountController,
+                  keyboardType: TextInputType.number,
+                  decoration: const InputDecoration(
+                    label: Text('Amount'),
+                    prefixText: '₹ ',
+                  ),
+                ),
+              ),
+              Text(_selectedDate),
+              IconButton(
+                  onPressed: () {
+                    showDatePicker(
+                      context: context,
+                      firstDate: DateTime.utc(2020),
+                      lastDate: DateTime.utc(2024),
+                    );
+                  },
+                  icon: const Icon(Icons.date_range))
+            ],
+          ),
+          Row(
+            children: [
+              const DropdownMenu(
+                label: Text('Category'),
+                dropdownMenuEntries: [],
+                width: 150,
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text('Cancel'),
+              ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  print(_titleController.text);
+                },
                 child: const Text('Save Expense'),
               ),
             ],
