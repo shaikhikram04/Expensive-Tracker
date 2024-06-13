@@ -12,6 +12,17 @@ class _NewExpenseState extends State<NewExpense> {
   final _amountController = TextEditingController();
   final _selectedDate = 'No Date Selected';
 
+  void _presentDatePicker() {
+    final now = DateTime.now();
+    final firstDate = DateTime(now.year - 1, now.month, now.day);
+    showDatePicker(
+      context: context,
+      firstDate: firstDate,
+      initialDate: now,
+      lastDate: now,
+    );
+  }
+
   @override
   void dispose() {
     _titleController.dispose();
@@ -44,16 +55,18 @@ class _NewExpenseState extends State<NewExpense> {
                   ),
                 ),
               ),
-              Text(_selectedDate),
-              IconButton(
-                  onPressed: () {
-                    showDatePicker(
-                      context: context,
-                      firstDate: DateTime.utc(2020),
-                      lastDate: DateTime.utc(2024),
-                    );
-                  },
-                  icon: const Icon(Icons.date_range))
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(_selectedDate),
+                    IconButton(
+                      onPressed: _presentDatePicker,
+                      icon: const Icon(Icons.calendar_month),
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
           Row(
