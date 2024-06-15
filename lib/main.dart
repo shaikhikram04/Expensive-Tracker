@@ -23,9 +23,10 @@ void main() {
           ),
         ),
         textTheme: ThemeData().textTheme.copyWith(
-              titleLarge: const TextStyle(
-                fontWeight: FontWeight.w500,
-                fontSize: 14,
+              titleLarge: TextStyle(
+                fontWeight: FontWeight.w600,
+                color: kColorScheme.onSecondaryContainer,
+                fontSize: 17,
               ),
             ),
       ),
