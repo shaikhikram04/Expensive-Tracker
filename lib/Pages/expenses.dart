@@ -64,8 +64,11 @@ class _ExpensesState extends State<Expenses> {
 
   @override
   Widget build(BuildContext context) {
-    Widget mainContent = const Center(
-      child: Text('No expenses found. Start adding some!'),
+    Widget mainContent = Center(
+      child: Text(
+        'No expenses found. Start adding some!',
+        style: Theme.of(context).textTheme.bodyMedium,
+      ),
     );
 
     if (_registeredExpenses.isNotEmpty) {
@@ -77,7 +80,6 @@ class _ExpensesState extends State<Expenses> {
 
     return Scaffold(
       appBar: AppBar(
-        // foregroundColor: const Color(0xFFE3C4FF),
         actions: [
           IconButton(
               onPressed: _openAddExpenceOverlay,

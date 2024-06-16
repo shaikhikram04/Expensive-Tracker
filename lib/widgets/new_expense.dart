@@ -78,6 +78,7 @@ class _NewExpenseState extends State<NewExpense> {
       child: Column(
         children: [
           TextField(
+            style: Theme.of(context).textTheme.headlineSmall,
             maxLength: 50,
             controller: _titleController,
             decoration: const InputDecoration(
@@ -89,6 +90,7 @@ class _NewExpenseState extends State<NewExpense> {
             children: [
               Expanded(
                 child: TextField(
+                  style: Theme.of(context).textTheme.headlineSmall,
                   controller: _amountController,
                   keyboardType: TextInputType.number,
                   decoration: const InputDecoration(
@@ -105,6 +107,7 @@ class _NewExpenseState extends State<NewExpense> {
                       _selectedDate == null
                           ? 'No date selected'
                           : formatter.format(_selectedDate!),
+                      style: Theme.of(context).textTheme.headlineSmall,
                     ),
                     IconButton(
                       onPressed: _presentDatePicker,
@@ -119,6 +122,7 @@ class _NewExpenseState extends State<NewExpense> {
           Row(
             children: [
               DropdownButton(
+                style: Theme.of(context).textTheme.headlineSmall,
                 value: _selectedCategory,
                 items: Category.values
                     .map(
