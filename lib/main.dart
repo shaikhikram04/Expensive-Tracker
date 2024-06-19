@@ -2,7 +2,7 @@ import 'package:expensive_tracker/Pages/expenses.dart';
 import 'package:flutter/material.dart';
 
 var kColorScheme = ColorScheme.fromSeed(
-  seedColor: const Color(0xFF603BB5),
+  seedColor: const Color(0xFF323264),
 );
 
 var kDarkColorScheme = ColorScheme.fromSeed(
