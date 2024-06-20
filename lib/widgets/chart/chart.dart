@@ -52,6 +52,7 @@ class Chart extends StatelessWidget {
         ),
       ),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Expanded(
             child: Row(
@@ -59,7 +60,9 @@ class Chart extends StatelessWidget {
               children: [
                 for (final bucket in buckets)
                   ChartBar(
-                    fill: bucket.totalExpense / maxTotalExpense,
+                    fill: (maxTotalExpense != 0)
+                        ? bucket.totalExpense / maxTotalExpense
+                        : 0,
                   )
               ],
             ),

@@ -10,12 +10,11 @@ class ChartBar extends StatelessWidget {
     final isDarkMode =
         MediaQuery.of(context).platformBrightness == Brightness.dark;
     return Expanded(
-      child: FractionallySizedBox(
-        heightFactor: fill,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 4),
-          child: Container(
-            width: 20,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 4),
+        child: FractionallySizedBox(
+          heightFactor: fill,
+          child: DecoratedBox(
             decoration: BoxDecoration(
               borderRadius:
                   const BorderRadius.vertical(top: Radius.circular(8)),
