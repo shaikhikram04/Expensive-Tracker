@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:expensive_tracker/models/expense.dart';
 import 'package:expensive_tracker/widgets/chart/chart.dart';
 import 'package:expensive_tracker/widgets/expenses_list/expenses_list.dart';
