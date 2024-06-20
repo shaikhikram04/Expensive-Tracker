@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:expensive_tracker/models/expense.dart';
 import 'package:expensive_tracker/widgets/chart/chart.dart';
 import 'package:expensive_tracker/widgets/expenses_list/expenses_list.dart';
@@ -65,6 +67,8 @@ class _ExpensesState extends State<Expenses> {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+
     Widget mainContent = Center(
       child: Text(
         'No expenses found. Start adding some!',
@@ -83,23 +87,34 @@ class _ExpensesState extends State<Expenses> {
       appBar: AppBar(
         actions: [
           IconButton(
-              onPressed: _openAddExpenceOverlay,
-              icon: const Icon(
-                Icons.add,
-                size: 35,
-              ))
+            onPressed: _openAddExpenceOverlay,
+            icon: const Icon(
+              Icons.add,
+              size: 35,
+            ),
+          )
         ],
-        // backgroundColor: const Color(0xFF1F0542),
         title: const Text('Flutter ExpenseTracker'),
       ),
-      body: Column(
-        children: [
-          Chart(expenses: _registeredExpenses),
-          Expanded(
-            child: mainContent,
-          ),
-        ],
-      ),
+      body: width < 600
+          ? Column(
+              children: [
+                Chart(expenses: _registeredExpenses),
+                Expanded(
+                  child: mainContent,
+                ),
+              ],
+            )
+          : Row(
+              children: [
+                Expanded(
+                  child: Chart(expenses: _registeredExpenses),
+                ),
+                Expanded(
+                  child: mainContent,
+                ),
+              ],
+            ),
     );
   }
 }
