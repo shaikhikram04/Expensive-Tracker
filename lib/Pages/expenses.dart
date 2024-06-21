@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:expensive_tracker/models/expense.dart';
 import 'package:expensive_tracker/widgets/chart/chart.dart';
 import 'package:expensive_tracker/widgets/expenses_list/expenses_list.dart';
@@ -58,6 +60,7 @@ class _ExpensesState extends State<Expenses> {
   void _openAddExpenceOverlay() {
     showModalBottomSheet(
       isScrollControlled: true,
+      useSafeArea: true,
       context: context,
       builder: (ctx) => NewExpense(addExpense),
     );
