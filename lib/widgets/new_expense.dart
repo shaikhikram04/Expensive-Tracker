@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:expensive_tracker/models/expense.dart';
 
@@ -30,14 +33,11 @@ class _NewExpenseState extends State<NewExpense> {
     });
   }
 
-  void _submitExpenseData() {
-    final enteredTitle = _titleController.text.trim();
-    final enteredAmount = double.tryParse(_amountController.text);
-    final isAmountInvalid = enteredAmount == null || enteredAmount <= 0;
-    if (enteredTitle.isEmpty || isAmountInvalid || _selectedDate == null) {
-      showDialog(
+  void _showDialog() {
+    if (Platform.isIOS) {
+      showCupertinoDialog(
         context: context,
-        builder: (ctx) => AlertDialog(
+        builder: (ctx) => CupertinoAlertDialog(
           title: const Text('Invalid input'),
           content: const Text(
               'Please make sure a valid title, amount, date and category was entered.'),
@@ -51,12 +51,39 @@ class _NewExpenseState extends State<NewExpense> {
           ],
         ),
       );
-      return;
+    } else {
+      showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: const Text('Invalid input'),
+          content: Text(
+            'Please make sure a valid title, amount, date and category was entered.',
+            style: Theme.of(context).textTheme.bodySmall,
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(ctx);
+              },
+              child: const Text('Okay'),
+            )
+          ],
+        ),
+      );
+    }
+  }
+
+  void _submitExpenseData() {
+    final enteredTitle = _titleController.text.trim();
+    final enteredAmount = double.tryParse(_amountController.text);
+    final isAmountInvalid = enteredAmount == null || enteredAmount <= 0;
+    if (enteredTitle.isEmpty || isAmountInvalid || _selectedDate == null) {
+      _showDialog();
     }
 
     widget.onAddExpence(Expense(
       title: enteredTitle,
-      amount: enteredAmount,
+      amount: enteredAmount!,
       date: _selectedDate!,
       category: _selectedCategory,
     ));

@@ -81,7 +81,7 @@ void main() {
               ),
               bodySmall: TextStyle(
                 color: kColorScheme.onSecondaryContainer,
-                fontSize: 15,
+                fontSize: 14,
               ),
               headlineSmall: TextStyle(
                 color: kColorScheme.onTertiaryContainer,
